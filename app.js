@@ -128,5 +128,5 @@ app.use((err, req, res, next) => {
 //express opening up our local server and listening to the commands. 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Serving on port ${port}`)
+    console.log(`Serving on port, wait for it, ${port}`)
 })
