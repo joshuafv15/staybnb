@@ -1,0 +1,17 @@
+body {
+    padding-bottom: 280px;
+}
+#cluster-map {
+    height: 350px; 
+    width: 100%;
+}
+
+#map {
+    height: auto; 
+    width: auto;
+}
+
+#placeCard {
+    background-color: rgba(125, 125, 125, 0.35); 
+    border-color: white
+}

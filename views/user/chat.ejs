@@ -1,0 +1,78 @@
+<% layout('layouts/boilerplate') %>
+    <link rel="stylesheet" href="/stylesheets/chat.css">
+
+    <div id="containerForChat">
+        <aside>
+            <header>
+                <h4>StayBnb!</h4>
+            </header>
+            <ul id="leftBar">
+                <% for (let chatter of user.chats) { %>
+
+                    <li id="<%= chatter.userId._id %>" class="clickableLi">
+                        <%if(chatter.userId.picture) { %>
+                            <img src="<%= chatter.userId.picture.url %>" style="max-width: 70px; max-height: 70px;">
+                            <% } else { %>
+                                <img src="https://res.cloudinary.com/scenerybubble-yelpcamp/image/upload/v1629127071/StayBnb/default_gn4wg0.jpg"
+                                    style="max-width: 70px;">
+                                <% } %>
+                                    <div>
+                                        <h2>
+                                            <%=capitalizeUsername(chatter.userId.username)%>
+                                        </h2>
+                                    </div>
+                    </li>
+                    <% }%>
+            </ul>
+        </aside>
+        <main id="mainChat">
+
+            <%if(!noChatActive) { %>
+                <header>
+                    <% if(user2.picture) { %>
+                        <img src="<%= user2.picture.url %>" style="max-width: 60px;max-height: 60px;">
+                        <% } else { %>
+                            <img src="https://res.cloudinary.com/scenerybubble-yelpcamp/image/upload/v1629127071/StayBnb/default_gn4wg0.jpg"
+                                style="max-width: 60px;">
+
+                            <% } %>
+                                <div>
+                                    <h2>Chat with <%= user2.username %>
+                                    </h2>
+                                </div>
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_star.png" alt="">
+                </header>
+                <ul id="chat">
+                    <%for(let chatter of user.chats) { %>
+                        <% if (String(user2._id)===String(chatter.userId._id)) { %>
+                            <% for (let message of chatter.messages) {%>
+                                <li class="<%= message.sent ? " me" : "you" %> ">
+                                    <div class="entete">
+                                        <h2>
+                                            <%= message.sent ? "Me" : capitalizeUsername(user2.username) %>
+                                        </h2>
+                                    </div>
+                                    <div class="triangle"></div>
+                                    <div class="message">
+                                        <%= message.text %>
+                                    </div>
+                                </li>
+                                <% }}} %>
+                </ul>
+                <footer>
+                    <form action="/user/<%= id %>/chat/<%= user2.id %>  " method="POST">
+                        <textarea placeholder="Type your message" name="message"></textarea>
+                        <button>Send</button>
+                    </form>
+                </footer>
+                <% } else { %>
+                    <div id="noChat">
+                        <h3>Hey there!</h3>
+                        <p>Click on a chat in your Left bar so you access the messages.</p>
+                    </div>
+                    <% } %>
+        </main>
+
+    </div>
+
+    <script src="/javascripts/chat.js" one="<%=user.id%>"> </script>
