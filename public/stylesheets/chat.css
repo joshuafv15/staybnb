@@ -161,7 +161,7 @@ aside li h3{
 	margin-bottom:5px;
 }
 #chat .message{
-	padding:20px;
+	padding:10px 20px;
 	color:#fff;
 	line-height:25px;
 	max-width:90%;
@@ -169,6 +169,12 @@ aside li h3{
 	text-align:left;
 	border-radius:5px;
 }
+
+#chat .message p{	
+	word-break: break-all;
+	margin-bottom: 5px;
+}
+
 #chat .me{
 	text-align:right;
 }
@@ -234,3 +240,35 @@ aside li h3{
 	text-align: center;
 }
 
+@media (max-width: 750px) {
+	#containerForChat{
+		width:400px;
+	}
+	#mainChat{
+		width:300px;
+	}
+	aside {
+		width: 100px;
+	}
+	aside header{
+		padding: 30px 0px;
+	}
+	aside li div{
+		margin-left:35px;
+		margin-top: 10px;
+	}
+	#mainChat footer button{
+		margin-left:200px;
+		
+	}
+	#mainChat header div{
+		margin-left:10px;
+		margin-right:10px;
+	}
+	
+	
+	#chat .me .triangle{
+		margin-left:200px;
+	}
+	
+}
